@@ -8,7 +8,14 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://adminnn:Goldenglobe!@goldenglobe-mysql.mysql.database.azure.com/ggDatabase'
+# .env 파일에서 데이터베이스 정보 불러오기
+username = os.getenv('DB_USERNAME')
+password = os.getenv('DB_PASSWORD')
+host = os.getenv('DB_HOST')
+db_name = os.getenv('DB_NAME')
+
+# SQLALCHEMY_DATABASE_URI를 환경 변수로 구성
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{username}:{password}@{host}/{db_name}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -25,7 +32,6 @@ def get_pdf_path_by_dest_id(dest_id):
     if not pdf_file:
         return None
     return pdf_file.pdf_path
-
 
 @app.route('/chatbot/question/<dest_id>', methods=['POST'])
 def handle_question(dest_id):
@@ -51,7 +57,6 @@ def handle_question(dest_id):
     return jsonify({
         "answer": result
     }), 200
-
 
 if __name__ == '__main__':
     app.run(debug=True)
