@@ -4,15 +4,13 @@ import chatbot_module
 import os
 from dotenv import load_dotenv
 import logging
-from flask_cors import CORS  # 추가된 부분
+from flask_cors import CORS
 
 load_dotenv()
 
 app = Flask(__name__)
 
-CORS(app)  # 추가된 부분. 필요에 따라 특정 도메인만 허용할 수 있습니다.
-# 예를 들어:
-# CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app)
 
 logging.basicConfig(level=logging.DEBUG)
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
