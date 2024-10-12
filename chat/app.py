@@ -4,13 +4,13 @@ import chatbot_module
 import os
 from dotenv import load_dotenv
 import logging
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 load_dotenv()
 
 app = Flask(__name__)
 
-CORS(app)
+CORS(app, intercept_exceptions=True)
 
 logging.basicConfig(level=logging.DEBUG)
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
@@ -55,7 +55,8 @@ def get_pdf_path_by_dest_id(dest_id):
         return None
     return pdf_file.pdf_path
 
-@app.route('/chatbot/question/<int:dest_id>', methods=['POST'])
+@app.route('/chatbot/question/<int:dest_id>', methods=['POST', 'OPTIONS'])  # OPTIONS 메서드 추가
+@cross_origin()
 def handle_question(dest_id):
     data = request.get_json()
     question = data.get('question')
