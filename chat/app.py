@@ -10,7 +10,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-CORS(app, intercept_exceptions=True)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 logging.basicConfig(level=logging.DEBUG)
 logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
