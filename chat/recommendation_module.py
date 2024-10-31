@@ -7,6 +7,7 @@ from langchain_community.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 import os
 import tempfile
+import re
 
 s3_client = boto3.client(
     's3',
@@ -32,15 +33,32 @@ def load_and_embed_pdfs(pdf_content):
 
     return vector_store
 
+def parse_recommendations(response):
+    lines = response.strip().split('\n')
+    recommendations = []
+    current_item = None
+    for line in lines:
+        match = re.match(r'^(\d+)\.\s*(.*)', line)
+        if match:
+            number = int(match.group(1))
+            description = match.group(2).strip()
+            if current_item:
+                recommendations.append(current_item)
+            current_item = {'number': number, 'recommendation': description}
+        else:
+            if current_item:
+                current_item['recommendation'] += ' ' + line.strip()
+    if current_item:
+        recommendations.append(current_item)
+    return recommendations
+
 def generate_recommendations(vector_store):
     llm = ChatOpenAI(model_name="gpt-4", temperature=0.7)
 
-    # 프롬프트를 분리하여 관리
-    prompt_intro = "당신은 여행 준비 전문가입니다. 주어진 여행지 정보를 바탕으로 사용자에게 필요한 준비물을 상세하게 추천해주세요."
+    prompt_intro = "당신은 여행 준비 전문가입니다. 주어진 여행지 정보를 바탕으로 사용자에게 필요한 준비물을 상세하게 번호를 매겨 추천해주세요."
     prompt_context = "\n\n여행지 정보:\n{context}"
     prompt_request = "\n\n준비물 추천:"
 
-    # 전체 프롬프트 구성
     prompt_template = prompt_intro + prompt_context + prompt_request
 
     prompt = PromptTemplate(
@@ -48,16 +66,15 @@ def generate_recommendations(vector_store):
         input_variables=["context"]
     )
 
-    # LLMChain 생성
     chain = LLMChain(llm=llm, prompt=prompt)
 
-    # 컨텍스트를 가져오기 위해 retriever 사용
     retriever = vector_store.as_retriever()
     docs = retriever.get_relevant_documents("")
 
     context = "\n".join([doc.page_content for doc in docs])
 
-    # LLMChain을 통해 응답 생성
     response = chain.run(context=context)
 
-    return response
+    recommendations = parse_recommendations(response)
+
+    return recommendations
