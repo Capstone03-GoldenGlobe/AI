@@ -161,5 +161,33 @@ def get_recommendations(dest_id):
         "recommendations": recommendations
     }), 200
 
+@app.route('/load_and_embed_pdfs', methods=['POST'])
+@cross_origin()
+def load_and_embed_pdfs_api():
+    data = request.get_json()
+    bucket_name = data.get('bucket_name')
+    object_key = data.get('object_key')
+
+    if not bucket_name or not object_key:
+        return jsonify({'error': 'bucket_name과 object_key는 필수입니다.'}), 400
+
+    try:
+        pdf_content = chatbot_module.get_pdf_from_s3(bucket_name, object_key)
+    except Exception as e:
+        return jsonify({'error': f"PDF 획득에 실패했습니다: {str(e)}"}), 500
+
+    try:
+        vector_store = chatbot_module.load_and_embed_pdfs(pdf_content)
+    except Exception as e:
+        return jsonify({'error': f"PDF 임베딩에 실패했습니다: {str(e)}"}), 500
+
+    try:
+        vector_store_id = f"vector_store_{object_key}.faiss"
+        vector_store.save_local(vector_store_id)
+    except Exception as e:
+        return jsonify({'error': f"벡터 스토어 저장에 실패했습니다: {str(e)}"}), 500
+
+    return jsonify({'message': 'PDF 임베딩 성공', 'vector_store_id': vector_store_id}), 200
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
