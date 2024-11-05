@@ -35,7 +35,11 @@ def load_and_embed_pdfs(pdf_content):
 def generate_answer(vector_store, question):
     llm = ChatOpenAI(model_name="gpt-4", temperature=0.7)
 
-    prompt_template = """당신은 친절한 여행 상담원입니다. 주어진 문서를 바탕으로 사용자의 질문에 대해 정확하고 상세한 답변을 제공해주세요.
+    prompt_template = """당신은 친절한 여행 상담원입니다.
+주어진 문서는 여행에 관한 정보를 담고 있습니다.
+주어진 문서를 바탕으로 사용자의 질문에 대해 정확하고 상세한 답변을 제공해주세요.
+사용자는 여행 정보를 모르는 사람이라고 가정합니다.
+또, 주어진 문서에서 얻을 수 있는 질문과 관련된 모든 내용을 친절히 알려주어야 합니다.
 
     문서 내용: {context}
 
