@@ -55,7 +55,7 @@ def parse_recommendations(response):
 def generate_recommendations(vector_store):
     llm = ChatOpenAI(model_name="gpt-4", temperature=0.7)
 
-    prompt_intro = "당신은 여행 준비 전문가입니다. 주어진 여행지 정보를 바탕으로 사용자에게 필요한 준비물을 상세하게 번호를 매겨 추천해주세요. 여권, 여분의 옷 등과 같은 일반적인 여행 준비물 대신, 사용자의 여행 목적지와 여행 기간에 특화된 준비물을 위주로 추천해주면 더 좋습니다."
+    prompt_intro = "당신은 여행 준비 전문가입니다. 주어진 여행지 정보와 문서를 바탕으로 사용자에게 필요한 준비물을 상세하게 번호를 매겨 추천해주세요. 여권, 여분의 옷 등과 같은 일반적인 여행 준비물 대신, 사용자의 여행 목적지와 여행 기간에 특화된 준비물을 위주로 추천해주면 더 좋습니다."
     prompt_context = "\n\n여행지 정보:\n{context}"
     prompt_request = "\n\n준비물 추천:"
 
