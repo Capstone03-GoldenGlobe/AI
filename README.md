@@ -10,12 +10,12 @@
 2. **준비물 추천**  
    - 여행 목적지에 최적화된 준비물 추천  
 
----
+
 
 ## 🛠️ 사용 기술  
 ![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-1F2437?style=flat-square) ![LangChain](https://img.shields.io/badge/LangChain-43A047?style=flat-square) ![FAISS](https://img.shields.io/badge/FAISS-0073E6?style=flat-square) ![HuggingFace](https://img.shields.io/badge/HuggingFace-FFCA28?style=flat-square&logo=huggingface&logoColor=white) ![OpenAI](https://img.shields.io/badge/OpenAI-GPT4-0072C6?style=flat-square) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-S3-232F3E?style=flat-square&logo=amazonaws&logoColor=white)  
 
----
+
 
 ## 💡 시작하기  
 
