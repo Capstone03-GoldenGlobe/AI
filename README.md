@@ -91,13 +91,13 @@ docker run -p 5000:5000 golden-globe-ai
   ]
 }
 ```
----
+
 ## 🌱 담당 기능
 | 🍀 이름 | 🍀 담당 기능 |
 |:---:|:---|
 | [원재영](https://github.com/jaeyeong13) | - **Flask 기반 REST API 개발**<br>- **챗봇 기능 구현**: LLM 기반 질문 응답<br>- **여행 준비물 추천 기능 구현**: RAG 기반 최적화된 준비물 추천<br>- **AWS S3 연동**: PDF 파일 저장 및 처리<br>- **LangChain 및 FAISS 활용**: 문서 임베딩 및 검색 기능 구현<br>- **AI 전체 아키텍처 설계 및 개발** |
 | [김근주](https://github.com/tdddt) | - **초기 AI 모델 선정 및 세팅**<br>- **AI 아키텍처 설계** |
----
+
 ## 🗂️ 폴더 구조
 ```
 📂 GoldenGlobe AI
@@ -110,7 +110,7 @@ docker run -p 5000:5000 golden-globe-ai
 ├── vector_store_2.faiss         ▶️ FAISS 벡터 스토어 저장소
 └── .dockerignore                ▶️ Docker 빌드 시 제외 파일
 ```
----
+
 ## 📚 오픈소스
 1. **Flask** : https://flask.palletsprojects.com/en/stable/
 2. **SQLAlchemy** : https://www.sqlalchemy.org/
