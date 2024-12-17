@@ -52,24 +52,9 @@ db.create_all()
 
 ### How to Install
 1. **프로젝트 코드 및 종속성 설치**<br>
-프로젝트에서 사용된 Python 라이브러리를 설치하려면 먼저 가상 환경을 설정한 후 아래 명령어를 실행합니다.<br>
+프로젝트에서 사용된 Python 라이브러리를 설치하려면 위 How to Build와 같이 먼저 가상 환경을 설정한 후 아래 명령어를 실행합니다.<br>
 
-(1) Repository 클론
-```bash
-git clone <repo_url>
-cd <repo_directory>
-```
-(2) Python 가상 환경 설정<br>
-가상 환경을 생성하고 활성화합니다.
-```bash
-# 가상 환경 생성
-python -m venv venv
-
-# 가상 환경 활성화
-source venv/bin/activate  
-# Windows: venv\Scripts\activate
-```
-(3) 라이브러리 설치<br>
+(1) 라이브러리 설치<br>
 `requirements.txt` 파일에 포함된 모든 종속성을 설치합니다.
 ```bash
 pip install -r requirements.txt
@@ -87,7 +72,7 @@ faiss-cpu
 openai
 sentence-transformers
 ```
-(4) 설치된 라이브러리 확인<br>
+(2) 설치된 라이브러리 확인<br>
 아래 명령어를 사용해 설치된 라이브러리를 확인합니다.
 ```
 pip list
