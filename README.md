@@ -157,5 +157,4 @@ docker run -p 5000:5000 golden-globe-ai
 4. **HuggingFace Embeddings** : https://huggingface.co/docs
 5. **FAISS** : https://faiss.ai/index.html
 6. **OpenAI GPT-4** : https://openai.com/
-7. **AWS S3** : https://aws.amazon.com/ko/s3/
-8. **Docker** : https://docs.docker.com/desktop/?_gl=1*1tk0ehy*_gcl_au*OTc3OTU3NjcxLjE3MzQzNzQxNDY.*_ga*NzU4ODg2MzQzLjE3MzQzNzQxNDY.*_ga_XJWPQMJYHQ*MTczNDM3NDE0NS4xLjEuMTczNDM3NDE0Ni41OS4wLjA.
+7. **Docker** : https://docs.docker.com/desktop/?_gl=1*1tk0ehy*_gcl_au*OTc3OTU3NjcxLjE3MzQzNzQxNDY.*_ga*NzU4ODg2MzQzLjE3MzQzNzQxNDY.*_ga_XJWPQMJYHQ*MTczNDM3NDE0NS4xLjEuMTczNDM3NDE0Ni41OS4wLjA.
