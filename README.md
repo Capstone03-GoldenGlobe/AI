@@ -51,10 +51,49 @@ db.create_all()
 <br>
 
 ### How to Install
-1. **서버 실행**
-```python
-python app.py
+1. **프로젝트 코드 및 종속성 설치**<br>
+프로젝트에서 사용된 Python 라이브러리를 설치하려면 먼저 가상 환경을 설정한 후 아래 명령어를 실행합니다.<br>
+
+(1) Repository 클론
+```bash
+git clone <repo_url>
+cd <repo_directory>
 ```
+(2) Python 가상 환경 설정<br>
+가상 환경을 생성하고 활성화합니다.
+```bash
+# 가상 환경 생성
+python -m venv venv
+
+# 가상 환경 활성화
+source venv/bin/activate  
+# Windows: venv\Scripts\activate
+```
+(3) 라이브러리 설치<br>
+`requirements.txt` 파일에 포함된 모든 종속성을 설치합니다.
+```bash
+pip install -r requirements.txt
+```
+- `requirements.txt`에는 다음과 같은 주요 라이브러리가 포함되어 있습니다.
+```plaintext
+Flask
+Flask-CORS
+Flask-SQLAlchemy
+PyMySQL
+boto3
+python-dotenv
+langchain
+faiss-cpu
+openai
+sentence-transformers
+```
+(4) 설치된 라이브러리 확인<br>
+아래 명령어를 사용해 설치된 라이브러리를 확인합니다.
+```
+pip list
+```
+<br>
+
 2. **Docker 빌드 및 실행**
 ```
 docker build -t golden-globe-ai .
